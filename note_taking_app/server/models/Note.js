@@ -4,8 +4,9 @@ const noteSchema = new mongoose.Schema(
     {
         user: {
             type: String,
-            required: true,
+            // required: true,
             ref: "User",
+            
         },
         title: {
             type: String,
