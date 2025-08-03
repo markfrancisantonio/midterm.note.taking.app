@@ -21,7 +21,11 @@ app.use(express.json());
 app.use(session({
     secret: "yourSecretKey",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+    secure: false,               
+    maxAge: 1000 * 60 * 60 * 24 
+  }
 }));
 
 app.use(passport.initialize());
