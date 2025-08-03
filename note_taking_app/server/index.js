@@ -6,7 +6,8 @@ import passport from "passport";
 
 import { connectDB } from "./config/db.js";
 import configurePassport from "./config/passport.js";
-import { router as noteRoutes } from "./routes/noteRoutes.js"
+import { router as noteRoutes } from "./routes/noteRoutes.js";
+import { router as userRoutes } from "./routes/userRoutes.js";
 
 
 dotenv.config()
@@ -28,6 +29,7 @@ app.use(passport.session());
 configurePassport(passport);
 
 app.use("/api/notes", noteRoutes);
+app.use("/api/users", userRoutes);
 
 //listen on port 3000
 app.listen(PORT, () =>{
