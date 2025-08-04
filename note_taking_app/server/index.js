@@ -4,6 +4,9 @@ import dotenv from "dotenv"
 import session from "express-session";
 import passport from "passport";
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import { connectDB } from "./config/db.js";
 import configurePassport from "./config/passport.js";
 import { router as noteRoutes } from "./routes/noteRoutes.js";
@@ -15,6 +18,11 @@ connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname,'..', 'public')));
 
 app.use(express.json());
 
@@ -36,8 +44,7 @@ app.use("/api/notes", noteRoutes);
 app.use("/api/users", userRoutes);
 
 //listen on port 3000
-app.listen(PORT, () =>{
-console.log(`App running on port ${PORT}`)
-})
+app.listen(PORT, () => {
+  console.log(`Server listening on http://localhost:${PORT}`);
+});
 
-// set middleware connection
