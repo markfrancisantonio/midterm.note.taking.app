@@ -14,9 +14,9 @@ body {
 
 
 h1 {
-  font-size: 2.5rem; /* big and bold */
+  font-size: 2.5rem; 
   margin-bottom: 1rem;
-  color: #2a3b2f; /* slightly darker green for contrast */
+  color: #2a3b2f; 
   text-align: center;
 }
 
@@ -24,7 +24,7 @@ h2 {
   font-size: 1.8rem;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
-  color: #355233; /* a bit lighter but still green */
+  color: #355233; 
 }
 
 .form-toggle {
@@ -47,7 +47,7 @@ button {
 }
 
 button:hover {
-  background-color: #1f3926; /* slightly darker on hover */
+  background-color: #1f3926; 
 }
 
 button:active {
@@ -57,14 +57,14 @@ button:active {
 
 #message {
   max-width: 400px;
-  margin: 1em auto;              /* center horizontally */
+  margin: 1em auto;              
   padding: 1em;
   text-align: center;
   border: 1px solid #ccc;
   border-radius: 5px;
   color: #2c3e50;
   font-weight: bold;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* subtle shadow */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
 }
 
 .success {
