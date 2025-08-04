@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Welcome to My Note Taking App</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Welcome to NoteApp</h1>
+    <h1>Welcome to MyPersonalNoteApp</h1>
 
     <div class="form-toggle">
       <button id="showSignup">Sign Up</button>
@@ -15,7 +16,19 @@
 
     <div id="message"></div>
 
-    <!-- Signup Form -->
+    <form id="loginForm" class="form-section">
+      <h2>Log In</h2>
+      <label>
+        Username:
+        <input type="text" name="username" required />
+      </label>
+      <label>
+        Password:
+        <input type="password" name="password" required />
+      </label>
+      <button type="submit">Login</button>
+    </form>
+
     <form id="signupForm" class="form-section">
       <h2>Sign Up</h2>
       <label>
@@ -32,21 +45,9 @@
       </label>
       <button type="submit">Register</button>
     </form>
-
-    <!-- Login Form -->
-    <form id="loginForm" class="form-section">
-      <h2>Log In</h2>
-      <label>
-        Username:
-        <input type="text" name="username" required />
-      </label>
-      <label>
-        Password:
-        <input type="password" name="password" required />
-      </label>
-      <button type="submit">Login</button>
-    </form>
-
+    <div id="footer"></div>
+    <script src="/inject.js"></script>
     <script src="index.js"></script>
+  </body>
   </body>
 </html>
