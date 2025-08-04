@@ -3,7 +3,9 @@ import Note from "../models/Note.js";
 // GET /api/notes
 export const getAllUserNotes = async (req, res) => {
     try {
+        console.log("Fetching notes for user:", req.user._id); // remove after testing
         const notes = await Note.find ({ user: req.user._id });
+        console.log(`Found ${notes.length} notes for user ${req.user._id}`); //remove after testing
         res.json(notes);
     } catch (error) {
         console.error(error);
