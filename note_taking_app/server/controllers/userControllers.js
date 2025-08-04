@@ -45,10 +45,10 @@ export const loginUser = (req, res, next) => {
 // logoutUser:
 //  - end session and return confirmation
 export const logoutUser = (req, res, next) => {
-    req.logout((err) => {
-        if (err) return next(err) ;
-        res.json({ message: "Logout successful"});
-});
+  req.logout((err) => {
+    if (err) return next(err);
+    res.redirect('/index.html?logout=1');
+  });
 };
 // getCurrentUser:
 //  return user info if authenticated
