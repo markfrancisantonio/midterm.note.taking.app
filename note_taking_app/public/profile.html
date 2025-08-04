@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Your Profile</h1>
+    <form id="profileForm">
+      <label>
+        Username: <input type="text" name="username" id="username" required />
+      </label>
+      <br />
+      <label>
+        Email: <input type="email" name="email" id="email" required />
+      </label>
+      <br />
+      <button type="submit">Save Changes</button>
+    </form>
+    <p id="message"></p>
+    <button id="logoutBtn">Logout</button>
+
+    <script src="profile.js"></script>
+  </body>
+</html>

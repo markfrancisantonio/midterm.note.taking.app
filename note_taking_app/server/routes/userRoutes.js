@@ -9,7 +9,8 @@ import {
     registerUser,
     loginUser,
     logoutUser,
-    getCurrentUser
+    getCurrentUser,
+    updateUserProfile
 
 } from '../controllers/userControllers.js'
 
@@ -20,5 +21,6 @@ export const router = express.Router()
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
-router.get('/logout', ensureAuthenticated, logoutUser)
+router.get('/logout', ensureAuthenticated, logoutUser);
 router.get('/me', ensureAuthenticated, getCurrentUser);
+router.put('/me', ensureAuthenticated, updateUserProfile);

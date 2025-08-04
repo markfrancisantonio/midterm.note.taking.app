@@ -63,3 +63,23 @@ export const getCurrentUser = (req, res) => {
             },
         });
     };
+
+    export const updateUserProfile = async (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ message: "Not authenticated" });
+  }
+
+  const { username, email } = req.body;
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (username) user.username = username;
+    if (email) user.email = email;
+
+    await user.save();
+
+    res.json({ message: "Profile updated", user: { username: user.username, email: user.email } });
+  } catch (err) {
+    res.status(500).json({ message: "Error updating profile" });
+  }
+};
