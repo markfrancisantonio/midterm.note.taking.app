@@ -13,10 +13,12 @@ import {
 
 } from '../controllers/userControllers.js'
 
+import { ensureAuthenticated } from '../middleware/authMiddleware.js';
+
 export const router = express.Router()
 
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
-router.get('/logout', logoutUser)
-router.get('/me', getCurrentUser);
+router.get('/logout', ensureAuthenticated, logoutUser)
+router.get('/me', ensureAuthenticated, getCurrentUser);

@@ -2,22 +2,11 @@ import mongoose from "mongoose";
 
 const noteSchema = new mongoose.Schema(
     {
-        user: {
-            type: String,
-            // required: true,
-            ref: "User",
-            
-        },
-        title: {
-            type: String,
-            required: true,
-        },
-        content: {
-            type: String,
-        },
+        title: { type: String, },
+        content: { type: String, },
+        user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User", },
     },
-    { timestamps: true }
-);
+    { timestamps: true });
 
 const Note = mongoose.model ("Note", noteSchema)
 

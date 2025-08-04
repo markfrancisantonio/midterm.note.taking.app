@@ -8,10 +8,12 @@ import {
 
 } from '../controllers/noteControllers.js'
 
+import { ensureAuthenticated } from '../middleware/authMiddleware.js'
+
 export const router = express.Router()
 
-router.get('/', getAllUserNotes);
-router.get('/:id', getUserNotesById);
-router.post('/', addNote);
-router.put('/:id', updateNote)
-router.delete('/:id', deleteNote);
+router.get('/', ensureAuthenticated, getAllUserNotes);
+router.get('/:id', ensureAuthenticated, getUserNotesById);
+router.post('/', ensureAuthenticated, addNote);
+router.put('/:id', ensureAuthenticated, updateNote)
+router.delete('/:id', ensureAuthenticated, deleteNote);

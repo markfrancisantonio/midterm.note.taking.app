@@ -3,7 +3,7 @@ import Note from "../models/Note.js";
 // GET /api/notes
 export const getAllUserNotes = async (req, res) => {
     try {
-        const notes = await Note.find ({});
+        const notes = await Note.find ({ user: req.user._id });
         res.json(notes);
     } catch (error) {
         console.error(error);
@@ -14,7 +14,7 @@ export const getAllUserNotes = async (req, res) => {
 // GET /api/notes/:id
 export const getUserNotesById = async (req,res) => {
     try {
-        const note = await Note.findById(req.params.id);
+        const note = await Note.findOne({ _id: req.params.id, user: req.user._id });
         if (!note) return res.status(404).json({message: "Note not found"});
         res.json(note);
     } catch (error) {
@@ -33,6 +33,7 @@ export const addNote = async (req,res) => {
     const newNote = new Note({
       title,
       content,
+      user: req.user._id,
     });
 
     await newNote.save();
@@ -49,7 +50,7 @@ export const updateNote = async (req,res) => {
     try {
         const {title, content} = req.body;
     
-        const note = await Note.findById(req.params.id);
+        const note = await Note.findOne({ _id: req.params.id, user: req.user._id });
         if (!note) return res.status(404).json ({message: "Note not found"});
     
         if (title) note.title = title;
@@ -67,7 +68,7 @@ export const updateNote = async (req,res) => {
 //DELETE /api/notes/:id
 export const deleteNote = async (req,res) => {
     try {
-        const note = await Note.findById(req.params.id);
+        const note = await Note.findOne({ _id: req.params.id, user: req.user._id });
         if (!note) return res.status(404).json({message: "Note not found"});
 
         await Note.deleteOne({_id: req.params.id});
