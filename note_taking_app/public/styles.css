@@ -141,15 +141,15 @@ nav ul.navbar-nav li.nav-item {
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
   transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.1s ease;
-  display: inline-flex;           /* changed from inline-block */
-  align-items: center;            /* vertical center */
-  justify-content: center;        /* horizontal center */
+  display: inline-flex;           
+  align-items: center;            
+  justify-content: center;        
   text-align: center;
   font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
-  line-height: 1.2;               /* controls text line height */
-  height: auto;                   /* reset fixed height */
+  line-height: 1.2;               
+  height: auto;                   
 }
 
 
@@ -164,8 +164,6 @@ nav ul.navbar-nav li.nav-item {
 }
 
 
-
-/* Logout button styled like nav links */
 #logoutBtn {
   font-weight: bold;
   font-size: 1rem; 
@@ -192,28 +190,24 @@ nav ul.navbar-nav li.nav-item {
   box-shadow: none;
 }
 
-
-
-/* Remove margin from inline form */
 form[style*="display: inline"] {
   margin: 0;
 }
 
-/* Note card */
 .note {
   display: flex;
-  justify-content: space-between; /* pushes content and buttons to opposite ends */
-  align-items: flex-start; /* aligns items at the top */
-  background: rgb(240, 250, 240); /* softer light green */
+  justify-content: space-between; 
+  align-items: flex-start; 
+  background: rgb(240, 250, 240); 
   padding: 1rem;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   margin-bottom: 1rem;
-  gap: 1rem; /* space between content and buttons */
+  gap: 1rem; 
 }
 
 .note-content {
-  flex: 1; /* content takes up remaining space */
+  flex: 1; 
 }
 
 .note-buttons {
@@ -224,7 +218,7 @@ form[style*="display: inline"] {
   align-items: flex-end;
 }
 
-/* Note title styling */
+
 .note-content .edit-title {
   font-weight: bold;
   font-size: 1.2rem;
@@ -235,7 +229,7 @@ form[style*="display: inline"] {
   outline: none;
 }
 
-/* Note content styling */
+
 .note-content .edit-content {
   width: 100%;
   min-height: 8em;
@@ -249,7 +243,7 @@ form[style*="display: inline"] {
   color: #333;
 }
 
-/* Timestamp styling */
+
 .note-content .timestamp {
   font-size: 0.75rem;
   color: #777;
@@ -258,7 +252,7 @@ form[style*="display: inline"] {
 
 
 .edit-content.editing {
-  background-color: #ffffcc; /* light yellow */
+  background-color: #ffffcc;
   border: 1px solid goldenrod;
 }
 
@@ -266,11 +260,11 @@ form[style*="display: inline"] {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.5rem; /* spacing between controls */
-  margin-bottom: 1rem; /* add margin bottom here instead */
+  gap: 0.5rem; 
+  margin-bottom: 1rem; 
 }
 
-/* Buttons */
+
 .btn {
   margin-right: 0.5rem;
 }
@@ -293,7 +287,7 @@ footer {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Profile Form Labels and Inputs */
+
 #profileForm label {
   display: block;
   margin-bottom: 1rem;
@@ -309,7 +303,7 @@ footer {
   margin-top: 0.3rem;
 }
 
-/* Align buttons under the form */
+
 #profileForm button {
   margin-top: 1rem;
 }
@@ -318,4 +312,25 @@ footer {
 
 .hidden {
   display: none;
+}
+
+.profile-container {
+  background-color: #d4edda; 
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  font-family: Arial, sans-serif;
+}
+
+#profileView p {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  color: #155724; 
+  font-weight: normal;
+}
+
+#profileView p span {
+  color: #0b2e13; 
+  font-weight: 700;
+  margin-left: 4px;
 }
