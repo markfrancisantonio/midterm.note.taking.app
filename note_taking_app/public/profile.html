@@ -3,32 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Profile</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>My Profile</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div id="header"></div>
+
     <h1>Your Profile</h1>
-    <form id="profileForm">
-      <label>
-        First Name:
-        <input type="text" name="firstName" id="firstName" required />
-      </label>
-      <label>
-        Last Name: <input type="text" name="lastName" id="lastName" required />
-      </label>
-      <label>
-        Username: <input type="text" name="username" id="username" required />
-      </label>
-      <label>
-        Email: <input type="email" name="email" id="email" required />
-      </label>
-      <button type="submit">Save Changes</button>
-    </form>
+
+    <div class="profile-container">
+      <!-- View Mode -->
+      <div id="profileView" class="profile-view">
+        <p><strong>Username:</strong> <span id="viewUsername"></span></p>
+        <p><strong>First Name:</strong> <span id="viewFirstName"></span></p>
+        <p><strong>Last Name:</strong> <span id="viewLastName"></span></p>
+        <p><strong>Email:</strong> <span id="viewEmail"></span></p>
+        <button id="editBtn">Edit</button>
+      </div>
+
+      <!-- Edit Mode -->
+      <form id="profileForm" class="profile-form hidden">
+        <label>
+          Username:
+          <input type="text" name="username" id="username" required />
+        </label>
+        <label>
+          First Name:
+          <input type="text" name="firstName" id="firstName" required />
+        </label>
+        <label>
+          Last Name:
+          <input type="text" name="lastName" id="lastName" required />
+        </label>
+        <label>
+          Email:
+          <input type="email" name="email" id="email" required />
+        </label>
+        <div class="form-buttons">
+          <button type="submit">Save Changes</button>
+          <button type="button" id="cancelEdit">Cancel</button>
+        </div>
+      </form>
+    </div>
+
     <p id="message"></p>
-    <button id="logoutBtn">Logout</button>
 
     <div id="footer"></div>
+
     <script src="/inject.js"></script>
     <script src="profile.js"></script>
   </body>
