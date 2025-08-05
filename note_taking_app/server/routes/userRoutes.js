@@ -1,26 +1,22 @@
-// POST /api/users/register   --> Register a new user
-// POST /api/users/login      --> Log in a user
-// GET  /api/users/logout     --> Log out the user
-// GET  /api/users/me         --> Get current user info
-
-
-import express from 'express';
+// Routes for user signup, login, logout, and profile management
+// Some routes require the user to be authenticated (logged in)
+import express from "express";
 import {
-    registerUser,
-    loginUser,
-    logoutUser,
-    getCurrentUser,
-    updateUserProfile
+  registerUser,
+  loginUser,
+  logoutUser,
+  getCurrentUser,
+  updateUserProfile,
+} from "../controllers/userControllers.js";
 
-} from '../controllers/userControllers.js'
+import { ensureAuthenticated } from "../middleware/authMiddleware.js";
 
-import { ensureAuthenticated } from '../middleware/authMiddleware.js';
+export const router = express.Router();
 
-export const router = express.Router()
-
-
-router.post('/register', registerUser);
-router.post('/login', loginUser);
-router.get('/logout', ensureAuthenticated, logoutUser);
-router.get('/me', ensureAuthenticated, getCurrentUser);
-router.put('/me', ensureAuthenticated, updateUserProfile);
+// Public routes: register and login do not require authentication
+router.post("/register", registerUser);
+router.post("/login", loginUser);
+// Protected routes: require user to be logged in
+router.get("/logout", ensureAuthenticated, logoutUser);
+router.get("/me", ensureAuthenticated, getCurrentUser);
+router.put("/me", ensureAuthenticated, updateUserProfile);
