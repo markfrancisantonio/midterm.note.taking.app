@@ -132,45 +132,66 @@ nav ul.navbar-nav li.nav-item {
   padding: 0;
 }
 
-nav ul.navbar-nav li.nav-item a.nav-link {
-  text-decoration: none;
-  color: darkgreen;
-  font-weight: bold;
-  padding: 8px 16px;
-  border-radius: 6px;
-  background-color: transparent;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: inline-block;
-}
-
-nav ul.navbar-nav li.nav-item a.nav-link:hover {
+.nav-button-style {
   background-color: darkgreen;
   color: ivory;
-  border-color: darkgreen;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.1s ease;
+  display: inline-flex;           /* changed from inline-block */
+  align-items: center;            /* vertical center */
+  justify-content: center;        /* horizontal center */
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 1.2;               /* controls text line height */
+  height: auto;                   /* reset fixed height */
 }
+
+
+.nav-button-style:hover {
+  background-color: #1f3926;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+}
+
+.nav-button-style:active {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+
 
 /* Logout button styled like nav links */
 #logoutBtn {
-  all: unset; /* reset all styles */
-  color: darkgreen;
   font-weight: bold;
-  padding: 8px 16px;
+  font-size: 1rem; 
+  line-height: 1.2;
+  background-color: darkgreen;
+  color: ivory;
+  border: none;
+  padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
-  border: 2px solid darkgreen;
-  background-color: transparent;
-  display: inline-block;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease;
+  font-weight: bold;
   text-align: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-block;
 }
 
 #logoutBtn:hover {
-  background-color: darkgreen;
-  color: ivory;
-  border-color: darkgreen;
+  background-color: #1f3926; 
 }
+
+#logoutBtn:active {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
 
 
 /* Remove margin from inline form */
@@ -183,7 +204,7 @@ form[style*="display: inline"] {
   display: flex;
   justify-content: space-between; /* pushes content and buttons to opposite ends */
   align-items: flex-start; /* aligns items at the top */
-  background: #fff;
+  background: rgb(240, 250, 240); /* softer light green */
   padding: 1rem;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -217,7 +238,7 @@ form[style*="display: inline"] {
 /* Note content styling */
 .note-content .edit-content {
   width: 100%;
-  min-height:  5.2em;
+  min-height: 8em;
   resize: vertical;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -241,6 +262,13 @@ form[style*="display: inline"] {
   border: 1px solid goldenrod;
 }
 
+#controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem; /* spacing between controls */
+  margin-bottom: 1rem; /* add margin bottom here instead */
+}
 
 /* Buttons */
 .btn {
@@ -253,4 +281,41 @@ footer {
   text-align: center;
   color: #666;
   font-size: 0.9rem;
+}
+
+#profileContainer {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 2px solid darkgreen;
+  border-radius: 10px;
+  background-color: rgb(221, 240, 221);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Form Labels and Inputs */
+#profileForm label {
+  display: block;
+  margin-bottom: 1rem;
+  color: #2a3b2f;
+  font-weight: bold;
+}
+
+#profileForm input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 0.3rem;
+}
+
+/* Align buttons under the form */
+#profileForm button {
+  margin-top: 1rem;
+}
+
+/* Logout button placement under the profile container */
+#logoutBtn {
+  display: block;
+  margin: 1.5rem auto 0 auto;
 }

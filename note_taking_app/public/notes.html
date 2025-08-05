@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Notes</title>
+    <title>My Notes</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -19,16 +19,16 @@
       </form>
     </div>
 
-    <div id="controls" style="margin-bottom: 1rem">
+    <div id="controls">
       <label for="sortSelect">Sort by:</label>
       <select id="sortSelect">
         <option value="newest">Newest First</option>
         <option value="oldest">Oldest First</option>
       </select>
 
-      <label for="filterDate" style="margin-left: 1rem">Filter by date:</label>
+      <label for="filterDate">Filter by date:</label>
       <input type="date" id="filterDate" />
-      <button id="clearFilters" style="margin-left: 1rem">Clear Filters</button>
+      <button id="clearFilters">Clear Filters</button>
     </div>
 
     <section id="notesList"></section>
