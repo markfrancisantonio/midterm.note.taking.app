@@ -1,6 +1,6 @@
 import Note from "../models/Note.js";
 
-// GET /api/notes
+// Get all notes that belong to the logged-in user
 export const getAllUserNotes = async (req, res) => {
   try {
     console.log("Fetching notes for user:", req.user._id); // remove after testing
@@ -13,7 +13,7 @@ export const getAllUserNotes = async (req, res) => {
   }
 };
 
-// GET /api/notes/:id
+// Get one specific note by its ID, only if it belongs to the logged-in user
 export const getUserNotesById = async (req, res) => {
   try {
     const note = await Note.findOne({ _id: req.params.id, user: req.user._id });
@@ -25,7 +25,7 @@ export const getUserNotesById = async (req, res) => {
   }
 };
 
-//POST /api/notes
+// Add a new note for the logged-in user
 export const addNote = async (req, res) => {
   try {
     const { title, content } = req.body;
@@ -46,7 +46,7 @@ export const addNote = async (req, res) => {
   }
 };
 
-// PUT /api/notes/:id
+// Update an existing note by ID, only if it belongs to the logged-in user
 export const updateNote = async (req, res) => {
   try {
     const { title, content } = req.body;

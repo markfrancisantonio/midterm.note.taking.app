@@ -1,37 +1,39 @@
-
 import { Strategy as LocalStrategy } from "passport-local";
 import User from "../models/User.js";
 
-export default function configurePassport(passport){ 
-passport.use(
+export default function configurePassport(passport) {
+  // Use local strategy to authenticate users with username and password
+  passport.use(
     new LocalStrategy(async (username, password, done) => {
-        try {
-            const user = await User.findOne({ username });
-            if (!user) {
-                return done(null,false, {message: "Incorrect username"});
-            }
-            const isValid = await user.isValidPassword(password);
-            if (!isValid) {
-                return done(null, false, { message: "Incorrect password"});
-            }
-            
-            return done(null, user);
-        } catch (error) {
-            return done(error);
+      try {
+        const user = await User.findOne({ username });
+        if (!user) {
+          return done(null, false, { message: "Incorrect username" });
         }
+        const isValid = await user.isValidPassword(password);
+        if (!isValid) {
+          return done(null, false, { message: "Incorrect password" });
+        }
+
+        return done(null, user);
+      } catch (error) {
+        return done(error);
+      }
     })
-);
+  );
 
-passport.serializeUser((user, done) =>{
+  // Save user ID to session
+  passport.serializeUser((user, done) => {
     done(null, user.id);
-});
+  });
 
-passport.deserializeUser(async (id, done) => {
+  // Retrieve user data from ID stored in session
+  passport.deserializeUser(async (id, done) => {
     try {
-        const user = await User.findById(id);
-        done(null, user);
+      const user = await User.findById(id);
+      done(null, user);
     } catch (error) {
-        done(error);
+      done(error);
     }
-});
+  });
 }

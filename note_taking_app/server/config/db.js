@@ -1,10 +1,9 @@
-//Import mongoose to connect to MongoDB
 import mongoose from "mongoose";
 
-//Function to connect to MongoDB
+// Connect to MongoDB using URI from environment or fallback to local DB
+
 export const connectDB = async () => {
   try {
-    // Try connecting using the URI from ENV and fallback to local MongoDB if no URI provided
     const conn = await mongoose.connect(
       process.env.MONGODB_URI || "mongodb://localhost:27017/myDatabase"
     );
