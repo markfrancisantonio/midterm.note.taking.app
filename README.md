@@ -13,29 +13,45 @@ Follow these steps to run the project locally:
 
 1. **Clone the repository:**
 
-   git clone <your-repo-url>
+   ```bash
+   git clone https://github.com/markfrancisantonio/midterm.note.taking.app.git
+   ```
 
-2. **Navigate into the project directory:**
+2. **Navigate into the app folder:**
 
-   cd <your-project-folder>
+   ```bash
+   cd midterm.note.taking.app/note_taking_app
+   ```
 
 3. **Install dependencies:**
 
+   ```bash
    npm install
+   ```
 
 4. **Create a `.env` file in the root folder with these variables:**
 
-   PORT=3000  
-   MONGODB_URI=your_mongodb_connection_string  
+   ```
+   PORT=3000
+   MONGODB_URI=your_mongodb_connection_string
    JWT_SECRET=your_jwt_secret_key
+   ```
 
 5. **Start the server:**
 
+   ```bash
    npm start
+   ```
 
 6. **Open your browser and go to:**
 
+   ```
    http://localhost:3000
+   ```
+
+---
+
+> **Note:** Make sure you have [Node.js](https://nodejs.org/) and npm installed on your machine before running the above commands.
 
 ---
 
@@ -51,6 +67,7 @@ All endpoints require the user to be authenticated except for login/signup (if i
 
   Response example:
 
+  ```json
   [
     {
       "_id": "note_id",
@@ -60,6 +77,7 @@ All endpoints require the user to be authenticated except for login/signup (if i
       "updatedAt": "2024-01-02T00:00:00.000Z"
     }
   ]
+  ```
 
 - **POST /api/notes**
 
@@ -67,10 +85,12 @@ All endpoints require the user to be authenticated except for login/signup (if i
 
   Request body example:
 
+  ```json
   {
     "title": "New note",
     "content": "Note content"
   }
+  ```
 
   Response: The created note object.
 
@@ -80,10 +100,12 @@ All endpoints require the user to be authenticated except for login/signup (if i
 
   Request body example:
 
+  ```json
   {
     "title": "Updated title",
     "content": "Updated content"
   }
+  ```
 
   Response: The updated note object.
 
@@ -105,12 +127,14 @@ All endpoints require the user to be authenticated except for login/signup (if i
 
   Request body example:
 
+  ```json
   {
     "firstName": "John",
     "lastName": "Doe",
     "username": "johndoe",
     "email": "john@example.com"
   }
+  ```
 
 - **POST /api/users/logout**
 
@@ -140,5 +164,3 @@ All endpoints require the user to be authenticated except for login/signup (if i
 ---
 
 Thank you for reviewing my midterm project!
-
----
