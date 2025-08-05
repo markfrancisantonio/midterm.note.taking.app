@@ -17,6 +17,6 @@ export const router = express.Router();
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 // Protected routes: require user to be logged in
-router.get("/logout", ensureAuthenticated, logoutUser);
+router.post("/logout", ensureAuthenticated, logoutUser);
 router.get("/me", ensureAuthenticated, getCurrentUser);
 router.put("/me", ensureAuthenticated, updateUserProfile);

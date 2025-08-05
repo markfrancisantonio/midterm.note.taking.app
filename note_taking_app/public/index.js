@@ -1,28 +1,31 @@
+// Get references to forms and message display
 const loginForm = document.getElementById("loginForm");
 const signupForm = document.getElementById("signupForm");
 const messageDiv = document.getElementById("message");
 const urlParams = new URLSearchParams(window.location.search);
 
+// Hide message box by default
 messageDiv.style.display = "none";
 
-// Toggle between forms
+// When "Sign Up" button is clicked, show sign-up form and hide login form
 document.getElementById("showSignup").addEventListener("click", () => {
   signupForm.style.display = "block";
   loginForm.style.display = "none";
   messageDiv.textContent = "";
   messageDiv.style.display = "none";
   messageDiv.className = "";
-  });
+});
 
+// When "Log In" button is clicked, show login form and hide sign-up form
 document.getElementById("showLogin").addEventListener("click", () => {
   loginForm.style.display = "block";
   signupForm.style.display = "none";
-    messageDiv.textContent = "";
+  messageDiv.textContent = "";
   messageDiv.style.display = "none";
   messageDiv.className = "";
 });
 
-// Signup handler
+// Handle sign-up form submission
 signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -34,6 +37,7 @@ signupForm.addEventListener("submit", async (e) => {
   const password = formData.get("password");
 
   try {
+    // Send data to backend to register the user
     const res = await fetch("/api/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -45,11 +49,11 @@ signupForm.addEventListener("submit", async (e) => {
     if (!res.ok) throw new Error(data.message || "Signup failed");
 
     messageDiv.textContent = "Signup successful! You can now log in.";
-    messageDiv.className = "success"; 
+    messageDiv.className = "success";
     messageDiv.style.display = "block";
     signupForm.reset();
     setTimeout(() => {
-     document.getElementById("showLogin").click();
+      document.getElementById("showLogin").click();
     }, 1500);
   } catch (err) {
     messageDiv.textContent = err.message;
@@ -58,7 +62,7 @@ signupForm.addEventListener("submit", async (e) => {
   }
 });
 
-// Login handler
+// Handle login form submission
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -67,6 +71,7 @@ loginForm.addEventListener("submit", async (e) => {
   const password = formData.get("password");
 
   try {
+    // Send login request to backend
     const res = await fetch("/api/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -77,6 +82,7 @@ loginForm.addEventListener("submit", async (e) => {
 
     if (!res.ok) throw new Error(data.message || "Login failed");
 
+    // Show success message and redirect
     messageDiv.textContent = "Login successful! Redirecting...";
     messageDiv.className = "success";
     messageDiv.style.display = "block";
@@ -90,8 +96,9 @@ loginForm.addEventListener("submit", async (e) => {
   }
 });
 
+// Show logout success message if redirected from logout
 if (urlParams.get("logout") === "1") {
   messageDiv.textContent = "Logout successful!";
   messageDiv.className = "success";
   messageDiv.style.display = "block";
-};
+}

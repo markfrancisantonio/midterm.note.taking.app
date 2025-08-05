@@ -1,4 +1,4 @@
-// inject.js
+// wanted a function that mimic the EJS header/footer.  Chatgpt suggested to create html instead which i did then helped me produce this file to load in my html files
 async function loadComponent(id, file) {
   try {
     const res = await fetch(file);
