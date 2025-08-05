@@ -6,7 +6,7 @@ import passport from "passport";
 //  - check if user exists
 //  - if no, hash password, create user, save to DB
 export const registerUser = async (req, res) =>{
-    const { username, email, password} = req.body;
+    const { firstName, lastName, username, email, password } = req.body;
     try {
         const existingUser = await User.findOne({ username });
         if (existingUser) {
@@ -14,7 +14,7 @@ export const registerUser = async (req, res) =>{
         }
 
        const hashedPassword = await User.hashPassword(password);
-       const newUser = new User({ username, email, passwordHash: hashedPassword });
+       const newUser = new User({ firstName, lastName, username, email, passwordHash: hashedPassword });
        
        await newUser.save()
        res.status(201).json({ message: "User created successfully" });
@@ -56,12 +56,14 @@ export const getCurrentUser = (req, res) => {
     if (!req.isAuthenticated()) {
         return res.status(401).json({ message: "Not Authenticated" });
     }
-        res.json({ 
-            user: {
-                username: req.user.username,
-                email: req.user.email,
-            },
-        });
+      res.json({ 
+        user: {
+          firstName: req.user.firstName,
+          lastName: req.user.lastName,
+          username: req.user.username,
+          email: req.user.email,
+        },
+      });
     };
 
     export const updateUserProfile = async (req, res) => {
@@ -69,16 +71,18 @@ export const getCurrentUser = (req, res) => {
     return res.status(401).json({ message: "Not authenticated" });
   }
 
-  const { username, email } = req.body;
+  const { firstName, lastName, username, email } = req.body;
   try {
     const user = await User.findById(req.user._id);
 
+    if (firstName) user.firstName = firstName;
+    if (lastName) user.lastName = lastName;
     if (username) user.username = username;
     if (email) user.email = email;
 
     await user.save();
 
-    res.json({ message: "Profile updated", user: { username: user.username, email: user.email } });
+    res.json({ message: "Profile updated", user: { firstName: user.firstName, lastName: user.lastName, username: user.username, email: user.email } });
   } catch (err) {
     res.status(500).json({ message: "Error updating profile" });
   }

@@ -27,6 +27,8 @@ signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const formData = new FormData(signupForm);
+  const firstName = formData.get("firstName");
+  const lastName = formData.get("lastName");
   const username = formData.get("username");
   const email = formData.get("email");
   const password = formData.get("password");
@@ -35,7 +37,7 @@ signupForm.addEventListener("submit", async (e) => {
     const res = await fetch("/api/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ firstName, lastName, username, email, password }),
     });
 
     const data = await res.json();
@@ -46,7 +48,9 @@ signupForm.addEventListener("submit", async (e) => {
     messageDiv.className = "success"; 
     messageDiv.style.display = "block";
     signupForm.reset();
-    document.getElementById("showLogin").click();
+    setTimeout(() => {
+     document.getElementById("showLogin").click();
+    }, 1500);
   } catch (err) {
     messageDiv.textContent = err.message;
     messageDiv.className = "error";

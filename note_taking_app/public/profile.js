@@ -8,8 +8,10 @@ async function loadProfile() {
     const res = await fetch('/api/users/me');
     if (!res.ok) throw new Error('Failed to fetch profile');
     const data = await res.json();
+    document.getElementById('firstName').value = data.user.firstName || '';
+    document.getElementById('lastName').value = data.user.lastName || '';
     document.getElementById('username').value = data.user.username;
-    document.getElementById('email').value = data.user.email;
+    document.getElementById('email').value = data.user.email; 
   } catch (err) {
     message.textContent = err.message;
   }
@@ -19,6 +21,8 @@ async function loadProfile() {
 profileForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
+  const firstName = profileForm.firstName.value.trim();
+  const lastName = profileForm.lastName.value.trim();
   const username = profileForm.username.value.trim();
   const email = profileForm.email.value.trim();
 
@@ -26,7 +30,7 @@ profileForm.addEventListener('submit', async (e) => {
     const res = await fetch('/api/users/me', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, email }),
+      body: JSON.stringify({ firstName, lastName, username, email }),
     });
 
     const data = await res.json();
