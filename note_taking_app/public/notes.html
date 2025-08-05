@@ -9,13 +9,27 @@
   <body>
     <div id="header"></div>
     <h1>My Notes</h1>
-    <button id="logoutBtn">Logout</button>
 
-    <form id="addNoteForm">
-      <input type="text" name="title" placeholder="Note title" required />
-      <textarea name="content" placeholder="Note content"></textarea>
-      <button type="submit">Add Note</button>
-    </form>
+    <div id="addNoteFormContainer">
+      <form id="addNoteForm">
+        <h2>New Note</h2>
+        <input type="text" name="title" placeholder="Note title" required />
+        <textarea name="content" placeholder="Note content"></textarea>
+        <button type="submit">Add</button>
+      </form>
+    </div>
+
+    <div id="controls" style="margin-bottom: 1rem">
+      <label for="sortSelect">Sort by:</label>
+      <select id="sortSelect">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select>
+
+      <label for="filterDate" style="margin-left: 1rem">Filter by date:</label>
+      <input type="date" id="filterDate" />
+      <button id="clearFilters" style="margin-left: 1rem">Clear Filters</button>
+    </div>
 
     <section id="notesList"></section>
 
