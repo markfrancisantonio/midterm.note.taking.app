@@ -180,20 +180,67 @@ form[style*="display: inline"] {
 
 /* Note card */
 .note {
+  display: flex;
+  justify-content: space-between; /* pushes content and buttons to opposite ends */
+  align-items: flex-start; /* aligns items at the top */
   background: #fff;
   padding: 1rem;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   margin-bottom: 1rem;
+  gap: 1rem; /* space between content and buttons */
 }
 
-.note h3 {
+.note-content {
+  flex: 1; /* content takes up remaining space */
+}
+
+.note-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 90px;
+  align-items: flex-end;
+}
+
+/* Note title styling */
+.note-content .edit-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: none;
+  background-color: transparent;
+  color: #2a3b2f;
+  margin-bottom: 0.5rem;
+  outline: none;
+}
+
+/* Note content styling */
+.note-content .edit-content {
+  width: 100%;
+  min-height:  5.2em;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Timestamp styling */
+.note-content .timestamp {
+  font-size: 0.75rem;
+  color: #777;
   margin-top: 0;
 }
 
-.note small {
-  color: #888;
+
+.edit-content.editing {
+  background-color: #ffffcc; /* light yellow */
+  border: 1px solid goldenrod;
 }
+
 
 /* Buttons */
 .btn {

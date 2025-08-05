@@ -26,11 +26,16 @@ function renderNotes() {
 
   // Filter by created date if filterDate has value
   if (filterDate && filterDate.value) {
-    filteredNotes = filteredNotes.filter(note => {
-      const noteDate = new Date(note.createdAt).toISOString().slice(0, 10);
-      return noteDate === filterDate.value;
-    });
-  }
+  filteredNotes = filteredNotes.filter(note => {
+    const noteDateObj = new Date(note.createdAt);
+    const year = noteDateObj.getFullYear();
+    const month = String(noteDateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(noteDateObj.getDate()).padStart(2, '0');
+    const noteDateLocal = `${year}-${month}-${day}`;
+    return noteDateLocal === filterDate.value;
+  });
+}
+
 
   // Sort notes by created date
   if (sortSelect) {
@@ -54,14 +59,19 @@ function renderNotes() {
     const noteEl = document.createElement('div');
     noteEl.className = 'note';
     noteEl.innerHTML = `
-      <input type="text" class="edit-title" value="${note.title}" disabled />
-      <textarea class="edit-content" disabled>${note.content || ''}</textarea>
-      <p class="timestamp">Created: ${new Date(note.createdAt).toLocaleString()}</p>
-      <p class="timestamp">Updated: ${new Date(note.updatedAt).toLocaleString()}</p>
-      <button data-id="${note._id}" class="editBtn">Edit</button>
-      <button data-id="${note._id}" class="saveBtn" style="display:none">Save</button>
-      <button data-id="${note._id}" class="deleteBtn">Delete</button>
-    `;
+  <div class="note-content">
+    <input type="text" class="edit-title" value="${note.title}" disabled />
+    <textarea class="edit-content" disabled>${note.content || ''}</textarea>
+    <p class="timestamp">Created: ${new Date(note.createdAt).toLocaleString()}</p>
+    <p class="timestamp">Updated: ${new Date(note.updatedAt).toLocaleString()}</p>
+  </div>
+  <div class="note-buttons">
+    <button data-id="${note._id}" class="editBtn">Edit</button>
+    <button data-id="${note._id}" class="saveBtn" style="display:none">Save</button>
+    <button data-id="${note._id}" class="deleteBtn">Delete</button>
+  </div>
+`;
+
     notesList.appendChild(noteEl);
   });
 
@@ -84,14 +94,22 @@ function attachNoteEventHandlers() {
   });
 
   document.querySelectorAll('.editBtn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const noteDiv = e.target.closest('.note');
-      noteDiv.querySelector('.edit-title').disabled = false;
-      noteDiv.querySelector('.edit-content').disabled = false;
-      noteDiv.querySelector('.saveBtn').style.display = 'inline-block';
-      e.target.style.display = 'none';
-    });
+  btn.addEventListener('click', (e) => {
+    const noteDiv = e.target.closest('.note');
+    if (!noteDiv) return;
+
+    noteDiv.querySelector('.edit-title').disabled = false;
+    noteDiv.querySelector('.edit-content').disabled = false;
+    noteDiv.querySelector('.saveBtn').style.display = 'inline-block';
+    e.target.style.display = 'none';
+
+    //Highlight the editable section
+   noteDiv.querySelector('.edit-content').classList.add('editing');
+
   });
+});
+
+
 
   document.querySelectorAll('.saveBtn').forEach(btn => {
     btn.addEventListener('click', async (e) => {
